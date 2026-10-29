@@ -1,0 +1,18 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# Logs et configuration locale
+*.log
+proc_watch.log
+/config.toml
+
+# Archives générées
+*.zip
+
+# Éditeurs et système
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,47 @@
+[package]
+name = "procwatch"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.95"
+authors = ["yolezz"]
+description = "Real-time Windows process watcher built on ETW: find out who started, killed or crashed a process"
+license = "MIT"
+readme = "README.md"
+keywords = ["etw", "windows", "process", "debugging", "monitoring"]
+categories = ["command-line-utilities", "development-tools::debugging"]
+
+[lib]
+name = "procwatch"
+path = "src/lib.rs"
+
+[[bin]]
+name = "procwatch"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.29"
+ctrlc = "3"
+inquire = "0.9"
+serde = { version = "1", features = ["derive"] }
+sysinfo = { version = "0.40", default-features = false, features = ["system"] }
+toml = "1"
+
+[target.'cfg(windows)'.dependencies]
+ferrisetw = "1.2"
+windows = { version = "0.57", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_Threading",
+    "Win32_NetworkManagement_IpHelper",
+    "Win32_NetworkManagement_Ndis",
+    "Win32_Networking_WinSock",
+] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+opt-level = 3

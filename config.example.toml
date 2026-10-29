@@ -1,0 +1,34 @@
+# Example procwatch configuration.
+# Default location: %APPDATA%\procwatch\config.toml
+# A missing key takes its default value; an unknown key is rejected.
+
+# Processes to watch (".exe" optional, "*" wildcards accepted).
+targets = ["RobloxPlayerBeta", "steam*"]
+
+# Hidden processes (noise). The default list is shown below.
+ignore = [
+    "NetCfgNotifyObjectHost.exe",
+    "conhost.exe",
+    "RuntimeBroker.exe",
+    "backgroundTaskHost.exe",
+    "taskhostw.exe",
+    "WmiPrvSE.exe",
+]
+
+# Seconds of history shown when a target ends (1 to 600).
+context_seconds = 30
+
+# Maximum number of events kept in memory for that history (100 to 1,000,000).
+buffer_capacity = 5000
+
+# Also show the processes of the "ignore" list.
+show_ignored = false
+
+# Show network interface changes.
+show_network = true
+
+# Look up the Windows Application event log after a crash.
+query_event_log = true
+
+# Plain-text copy of the output (uncomment to enable).
+# log_file = "C:\\Users\\you\\procwatch.log"
